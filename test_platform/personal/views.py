@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import auth
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 """
 def say_hello(request):
@@ -51,13 +51,22 @@ def index(request):
         if user is None:
             return render(request, "index.html", {"error": "用户名或者密码错误"})
         else:
-            #return render(request, "manage.html")
-            return  HttpResponseRedirect("/manage/")
-#登录成功,跳转管理页面
-def manage(request):
-    return render(request,"manage.html")
+            auth.login(request,user) #记录用户的登录状态
+            return  HttpResponseRedirect("/project/")
+#登录成功,默认项目管理页
+#@login_required()登录装饰器,根据记录的状态判断是否登录，如果未登录，跳转页面就会失败
+@login_required()
+def project_manage(request):
+    return render(request,"project.html")
 
+#处理用户的退出
+def logout(request):
+    auth.logout(request) #退出登录,清除session
+    return  HttpResponseRedirect("/index/")
 
+#模块管理
+def module_manage(request):
+    return render(request,"module.html")
 
 
 """

@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>我的第一个python页面</title>
-</head>
-<body>
-<form action="/index/" method="post">
-  <p>username:
-      <input type="text" name="username" />
-  </p>
-  <p>password:
-      <input type="password" name="password" />
-  </p>
-   <div style="color:red"> {{error}}  </div>
-    {% csrf_token %}
-  <input type="submit" value="Login" />
-</form>
-</body>
-</html>
+
+{% extends "base.html" %}
+{% block base %}
+<div style="height:800px; background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552386348333&di=f0190d8272ef5cbd799f3d274c4a5000&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F43a7d933c895d143054592b073f082025aaf0775.jpg)">
+ <div class="container" style="width: 300px">
+
+      <form class="form-signin" action="/index/" method="post">
+        <h2 class="form-signin-heading" style="text-align:  center">接口测试平台</h2>
+        <label for="inputName" class="sr-only">账号:</label>
+        <input type="text" id="inputName" name="username" class="form-control" placeholder="username" >
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" >
+            <div style="color:red"> {{error}}  </div>
+            {% csrf_token %}
+          <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+    </div> <!-- /container -->
+</div>
+{% endblock %}
+
+
 
 
 <!--http://127.0.0.1:8000/index/form_action.asp?fname=name&lname=12233-->
